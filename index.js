@@ -69,11 +69,17 @@ if (argcount > 1) {
 const promp = prompt();
 const username = promp('username:  ');
 const password = promp('password:  ');
-user = getUser(username, String(password));
-console.log(user)
+let user = getUser(username, String(password));
+//console.log(user)
 if (!user) {
-    console.log("Could not log in. Try Again.")
-    process.exit(0);
+    // There is no account for username, ask them to create one.
+    console.log("Could not log in. Try Again.");
+    console.log("Provide an email to create your account.");
+    const email = promp('email:  ');
+    addUser(username, email, password);
+    user = getUser(username, String(password));
+    
+    //process.exit(0);
 }
 
 // Fetch Json.
