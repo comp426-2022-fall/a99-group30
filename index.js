@@ -69,10 +69,8 @@ if (argcount > 1) {
 const promp = prompt();
 const username = promp('username:  ');
 const password = promp('password:  ');
-user = getUser(username, String(password));
-console.log(user)
+let user = getUser(username, String(password));
 if (!user) {
-    console.log("Could not log in. Try Again.")
     process.exit(0);
 }
 

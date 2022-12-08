@@ -115,6 +115,7 @@ function testTables() {
   getMeals('admin')
   getUser('admin', 'securepass123')
   delUser('admin', 'securepass123')
+  addUser('elijah', 'admin@admin.admin', '123')
 }
 
 //testTables()
