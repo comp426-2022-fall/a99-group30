@@ -16,6 +16,8 @@ if (args.h) {
     console.log("    -l            List catagories.");
     console.log("    -m            List areas.");
     console.log("    -n            List ingredients.");
+    console.log("    -n            List ingredients.");
+    console.log("    -s            Reduced output.");
     console.log("    -h            Recieve previously requested recipies,");
 	console.log("    -j            Echo pretty JSON from THEMEALDB API and exit.");
 	process.exit(0);
@@ -37,7 +39,7 @@ if (args.a) {
     url = 'filter.php?a=' + args.a;
     argcount += 1;
 }
-if (args.i) {
+if (args.c) {
     url = 'filter.php?c=' + args.c;
     argcount += 1;
 }
@@ -54,8 +56,10 @@ if (args.n) {
     argcount += 1;
 }
 if (argcount > 1) {
-    console.log("You may only specify one argument per request.")
+    console.log("You may only specify one reciepe selection argument per request.")
     process.exit(0);
+} else if (argcount = 0) {
+    url = 'random.php';
 }
 
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/' + url;
@@ -70,7 +74,89 @@ if (args.j) {
 if (!data.meals) {
     console.log ("No meals found using your search parameters :(")
     process.exit(0);
-} else {
+} else if (args.l) {
+    for (let i = 1; i < data.meals.length; i++) {
+        console.log(data.meals[i].strCategory)
+    }
+} else if (args.m) {
+    for (let i = 1; i < data.meals.length; i++) {
+        console.log(data.meals[i].strArea)
+    }
+} else if (args.n) {
+    for (let i = 1; i < data.meals.length; i++) {
+        console.log(data.meals[i].strIngredient)
+    }
+} else if (args.s) {
     console.log("Meal Name: " + data.meals[0].strMeal + '\n')
-    console.log("Instructions: \n" + data.meals[0].strInstructions)
+    console.log("Instructions: \n" + data.meals[0].strInstructions )
+
+} else {
+    let ingredients = "";
+    if(data.meals[0].strIngredient1 !== '') {
+        ingredients = ingredients + (data.meals[0].strIngredient1)
+    }
+    if(data.meals[0].strIngredient2 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient2)
+    }
+    if(data.meals[0].strIngredient3 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient3)
+    }
+    if(data.meals[0].strIngredient4 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient4)
+    }
+    if(data.meals[0].strIngredient5 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient5)
+    }
+    if(data.meals[0].strIngredient6 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient6)
+    }
+    if(data.meals[0].strIngredient7 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient7)
+    }
+    if(data.meals[0].strIngredient8 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient8)
+    }
+    if(data.meals[0].strIngredient9 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient9)
+    }
+    if(data.meals[0].strIngredient10 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient10)
+    }
+    if(data.meals[0].strIngredient11 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient11)
+    }
+    if(data.meals[0].strIngredient12 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient12)
+    }
+    if(data.meals[0].strIngredient13 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient13)
+    }
+    if(data.meals[0].strIngredient14 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient14)
+    }
+    if(data.meals[0].strIngredient15 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient15)
+    }
+    if(data.meals[0].strIngredient16 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient16)
+    }
+    if(data.meals[0].strIngredient17 !== '') {
+        ingredients = ingredients + ", " + (data.meals[0].strIngredient17)
+    }
+    if(data.meals[0].strIngredient18 !== '') {
+        ingredients = ingredients + ", " + console.log(data.meals[0].strIngredient18)
+    }
+    if(data.meals[0].strIngredient19 !== '') {
+        ingredients = ingredients + ", " + console.log(data.meals[0].strIngredient19)
+    }
+    if(data.meals[0].strIngredient20 !== '') {
+        ingredients = ingredients + ", " + console.log(data.meals[0].strIngredient20)
+    }
+    
+    console.log("Meal Name: " + data.meals[0].strMeal + '\n')
+    console.log("Category: " + data.meals[0].strCategory + '\n')
+    console.log("Area: " + data.meals[0].strArea + '\n')
+    console.log("Ingrediens: " + ingredients + '\n')
+    console.log("Source: " + data.meals[0].strSource + '\n')
+    console.log("Instructions: '\n'" + data.meals[0].strInstructions)
 }
