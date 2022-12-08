@@ -2,12 +2,15 @@
 
 import minimist from "minimist"
 import fetch from "node-fetch"
+import { addMeal, addUser, getMeals, getUser } from "./database.js";
+import prompt from "prompt-sync";
 // NOTES FOR Documentation: Must install these.
 
 const args = minimist(process.argv.slice(2));
 
+
 if (args.h) {
-	console.log("Usage: index.js [options] -h HELP");
+	console.log("Usage: index.js -h HELP");
 	console.log("    -h            Show this help message and exit.");
 	console.log("    -r            Recieve a random recipe.");
 	console.log("    -k            Recieve a recipe based on a main ingredient.");
@@ -27,6 +30,7 @@ if (args.h) {
 let argcount = 0;
 let url = '';
 
+// Parse Args.
 if (args.r) {
     url = 'random.php';
     argcount += 1;
@@ -61,16 +65,32 @@ if (argcount > 1) {
 } else if (argcount = 0) {
     url = 'random.php';
 }
+// Ask for user login.
+const promp = prompt();
+const username = promp('username:  ');
+const password = promp('password:  ');
+user = getUser(username, String(password));
+console.log(user)
+if (!user) {
+    console.log("Could not log in. Try Again.")
+    process.exit(0);
+}
 
+// Fetch Json.
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/' + url;
 
 const response = await fetch(baseUrl);
 const data = await response.json();
 
+// Return json string.
 if (args.j) {
 	console.log(data);
 	process.exit(0);
 }
+if (args.h) {
+    console.log(getMeals(user.login));
+}
+// Convert Json to string and output.
 if (!data.meals) {
     console.log ("No meals found using your search parameters :(")
     process.exit(0);
@@ -89,7 +109,7 @@ if (!data.meals) {
 } else if (args.s) {
     console.log("Meal Name: " + data.meals[0].strMeal + '\n')
     console.log("Instructions: \n" + data.meals[0].strInstructions )
-
+    addMeal(user.login, data.meals[0].strMeal)
 } else {
     let ingredients = "";
     if(data.meals[0].strIngredient1 !== '') {
@@ -159,4 +179,7 @@ if (!data.meals) {
     console.log("Ingrediens: " + ingredients + '\n')
     console.log("Source: " + data.meals[0].strSource + '\n')
     console.log("Instructions: '\n'" + data.meals[0].strInstructions)
+
+    addMeal(user.login, data.meals[0].strMeal)
 }
+process.exit(0);
