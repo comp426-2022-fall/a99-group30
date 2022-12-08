@@ -87,14 +87,27 @@ export function addMeal(login, meal) {
   }
 }
 
+// Get all meals for a user
+export function getMeals(login) {
+  const stmt = db.prepare('SELECT * FROM Meals WHERE login=?')
+  const info = stmt.all(login)
+  //console.log(info)
+  return info
+}
+
 // Insert test values to users and meals
 function testTables() {
   addUser('admin', 'admin@admin.admin', 'securepass123')
   addUser('test', 'admin@admin.admin', 'notapass')
   addMeal('admin', 'chicken')
+  addMeal('admin', 'food')
+  addMeal('admin', 'banana')
+  getMeals('admin')
   getUser('admin', 'securepass123')
   delUser('admin', 'securepass123')
 }
+
+//testTables()
 
 // Export database
 export default db;
