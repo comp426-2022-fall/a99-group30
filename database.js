@@ -48,6 +48,10 @@ export function addUser(login, email, password) {
 export function getUser(login, password) {
   const stmt = db.prepare('SELECT * FROM Users U WHERE U.login=?')
   const user = stmt.get(login)
+  if (!user) {
+    console.log("There is no account for " + login)
+    return null
+  }
   const hash = user.password
   // Check if password matches hash before returning user info
   if (bcrypt.compareSync(password, hash)) {
@@ -64,6 +68,10 @@ export function getUser(login, password) {
 export function delUser(login, password) {
   const stmt = db.prepare('SELECT U.password FROM Users U WHERE U.login=?')
   const user = stmt.get(login)
+  if (!user) {
+    console.log("There is no account for " + login)
+    return
+  }
   const hash = user.password
   // Check if password matches hash before deleting user
   if (bcrypt.compareSync(password, hash)) {
@@ -97,6 +105,8 @@ export function getMeals(login) {
 
 // Insert test values to users and meals
 function testTables() {
+  getUser('notarealuser', 'pass')
+  delUser('notarealuser', 'pass')
   addUser('admin', 'admin@admin.admin', 'securepass123')
   addUser('test', 'admin@admin.admin', 'notapass')
   addMeal('admin', 'chicken')
