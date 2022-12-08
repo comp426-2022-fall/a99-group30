@@ -1,0 +1,19 @@
+{
+  "name": "a99-group30",
+  "version": "1.0.0",
+  "description": "426 Group 30 Final Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-fall/a99-group30.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-fall/a99-group30/issues"
+  },
+  "homepage": "https://github.com/comp426-2022-fall/a99-group30#readme"
+}
