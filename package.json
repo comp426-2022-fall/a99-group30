@@ -1,0 +1,28 @@
+{
+  "name": "a99-group30",
+  "version": "1.0.0",
+  "description": "426 Group 30 Final Project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node index.js -r",
+    "run": "node index.js -r"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-fall/a99-group30.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-fall/a99-group30/issues"
+  },
+  "homepage": "https://github.com/comp426-2022-fall/a99-group30#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "better-sqlite3": "^8.0.1",
+    "minimist": "^1.2.7",
+    "node-fetch": "^3.3.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
