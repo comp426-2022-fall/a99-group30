@@ -23,7 +23,7 @@ if (args.h) {
 	process.exit(0);
 }
 
-// NOTES FOR Documentation: Can only seelct one arg at a time. OR arg + j
+// NOTES FOR Documentation: Can only seelct one arg at a time. OR arg + j, or arg + s
 let argcount = 0;
 let url = '';
 
