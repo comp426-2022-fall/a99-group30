@@ -5,6 +5,9 @@
 ## Summary 
 This project allows users to find recipes given a variety of filters. Once users have created an account, they will be able to search for recipes by filtering for category, for area, for a main a recipe, or receive a random recipe. Users will also have their past recipes logged in the database.
 
+## Video Demo
+https://youtu.be/kzRkOE0ZDKI
+
 ## Installation
 1. Clone the repository
 2. Run 'npm install'
