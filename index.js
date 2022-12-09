@@ -21,7 +21,7 @@ if (args.h) {
     console.log("    -n            List ingredients.");
     console.log("    -n            List ingredients.");
     console.log("    -s            Reduced output.");
-    console.log("    -h            Recieve previously requested recipies,");
+    console.log("    -o            Recieve previously requested recipies,");
 	console.log("    -j            Echo pretty JSON from THEMEALDB API and exit.");
 	process.exit(0);
 }
@@ -73,28 +73,36 @@ let user = getUser(username, String(password));
 //console.log(user)
 if (!user) {
     // There is no account for username, ask them to create one.
-    console.log("Could not log in. Try Again.");
-    console.log("Provide an email to create your account.");
-    const email = promp('email:  ');
-    addUser(username, email, password);
-    user = getUser(username, String(password));
-    
-    //process.exit(0);
+    let ans = promp("Could not log in. Would you like to create a new account (yes/no)? ");
+    if (ans === 'yes') {
+        const email = promp('email:  ');
+        addUser(username, email, password);
+        user = getUser(username, String(password));
+    }
+    else {
+        console.log('Please try signing in again.')
+        process.exit(0);
+    }
+}
+if (args.o) {
+    console.log('\nYour Meal History');
+    const meals = (getMeals(user.login));
+    for (let i = 0; i < getMeals(user.login).length; i++) {
+        console.log(getMeals(user.login)[i].name);
+    }
+    process.exit(0);
 }
 
 // Fetch Json.
-const baseUrl = 'https://www.themealdb.com/api/json/v1/1/' + url;
+const baseUrl = 'https://www.themealdb.com/api/json/v1/1/' + url
 
-const response = await fetch(baseUrl);
-const data = await response.json();
+const response = await fetch(baseUrl)
+const data = await response.json()
 
 // Return json string.
 if (args.j) {
 	console.log(data);
 	process.exit(0);
-}
-if (args.h) {
-    console.log(getMeals(user.login));
 }
 // Convert Json to string and output.
 if (!data.meals) {

@@ -56,7 +56,7 @@ export function getUser(login, password) {
   // Check if password matches hash before returning user info
   if (bcrypt.compareSync(password, hash)) {
     // Password matches hash
-    console.log(user)
+    //console.log(user)
     return user
   }else {
     console.log("Incorrect password.")
