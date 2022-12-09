@@ -1,47 +1,32 @@
 # a99 Final Project
 
+# Recipe Finder
+
 ## Summary 
+This project allows users to find recipes given a variety of filters. Once users have created an account, they will be able to search for recipes by filtering for category, for area, for a main a recipe, or receive a random recipe. Users will also have their past recipes logged in the database.
 
-COMP426 final project template boilerplate.
-All your code and documentation goes here.
-Change this text to be a brief description of your final project.
-Put the name of your project in the header above.
-You will change everything below to be the main technical documentation, as outlined below.
+## Video Demo
+https://youtu.be/kzRkOE0ZDKI
 
-## First steps
+## Installation
+1. Clone the repository
+2. Run 'npm install'
+3. Run 'npm test'
+4. Run 'node index.js -h' to see all available commands
 
-Other steps that you will need to take after your team has accepted the assignment:
+## Dependencies
+* minimist
+* node-fetch
+* prompt-sync
+* better-sqlite3
+* bcrypt
 
-1. Choose a license and update the LICENSE file accordingly. 
-2. Edit this README.md file and use it as the main location of your technical documentation with links out to information contained under `/docs/`.
-3. Create a `/docs/` directory for more elaborate documentation of your API, planning notes, etc.
-4. Make sure that all of your team members have access to the repository as administrators.
-5. Create a project under the **Projects** tab. Use this to manage your planning. Create a To-do list, etc. Explore the tools available and user them to manage your project.
-7. Assign team roles and include a listing of those roles in this README.md file or in another file under `/docs/`.
-8. Then put your entire development workflow in this repository.
-9. Use **Pull requests** to propose changes and incorporate them into your code from various team members. 
-10. Use **Issues** to identify and track bugs and also to communicate about various aspects of the project.
+## Roles
+Details about roles can be found here: [roles.md](/docs/roles.md).
 
-## Team mangement
+## Planning
+Details about planning can be found here: [planning.md](/docs/planning.md).
 
-Plan to meet with your team ASAP.
-Talk through identifying roles within your team.
-
-Try to figure out what each of you are good at/enjoy doing and try to work out roles that incorporate that.
-
-Some basic roles you will want to consider:
-
-1. A review manager - someone to review pull requests and merge or reject them and manage the related discussions
-2. A plan manager - someone to keep an eye on the overall plan and keep the project tab/to-do list up to date
-3. A documentation manager - someone to keep the documentation in order and identify what is missing and needs to be documented
-4. A release manager - someone to manage the packaging and release process for your prototype package
-5. A project manager - someone keeping track of all the moving parts and make sure that everything that needs to happen is happening.
-5. Roles for team members to take charge or different parts of the project. Possible roles:
-    1. Front end lead
-    2. Back end lead
-    3. Database lead
-    4. Design lead
-    5. Etc.
-
-You will notice that there are more roles than people in your group.
-That is because you will all be doing a hybrid job of managing a thing while working on other things.
+## Future plans
+* Ability to delete a recipe for a user
+* Inclusion of a video how-to link for the recipe
